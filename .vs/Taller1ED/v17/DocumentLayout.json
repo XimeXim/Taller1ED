@@ -11,12 +11,20 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Taller1ED\\estanteria.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ximena\\OneDrive - alumnos.ucn.cl\\Documentos\\GitHub\\Taller1ED\\Taller1ED\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Taller1ED\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ximena\\OneDrive - alumnos.ucn.cl\\Documentos\\GitHub\\Taller1ED\\Taller1ED\\NodoZapato.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Taller1ED\\NodoZapato.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ximena\\OneDrive - alumnos.ucn.cl\\Documentos\\GitHub\\Taller1ED\\Taller1ED\\Zapato.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Taller1ED\\Zapato.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ximena\\OneDrive - alumnos.ucn.cl\\Documentos\\GitHub\\Taller1ED\\Taller1ED\\NodoZapato.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Taller1ED\\NodoZapato.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ximena\\OneDrive - alumnos.ucn.cl\\Documentos\\GitHub\\Taller1ED\\Taller1ED\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Taller1ED\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +34,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NodoZapato.cpp",
+              "DocumentMoniker": "C:\\Users\\Ximena\\OneDrive - alumnos.ucn.cl\\Documentos\\GitHub\\Taller1ED\\Taller1ED\\NodoZapato.cpp",
+              "RelativeDocumentMoniker": "Taller1ED\\NodoZapato.cpp",
+              "ToolTip": "C:\\Users\\Ximena\\OneDrive - alumnos.ucn.cl\\Documentos\\GitHub\\Taller1ED\\Taller1ED\\NodoZapato.cpp",
+              "RelativeToolTip": "Taller1ED\\NodoZapato.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-20T21:44:28.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NodoZapato.h",
+              "DocumentMoniker": "C:\\Users\\Ximena\\OneDrive - alumnos.ucn.cl\\Documentos\\GitHub\\Taller1ED\\Taller1ED\\NodoZapato.h",
+              "RelativeDocumentMoniker": "Taller1ED\\NodoZapato.h",
+              "ToolTip": "C:\\Users\\Ximena\\OneDrive - alumnos.ucn.cl\\Documentos\\GitHub\\Taller1ED\\Taller1ED\\NodoZapato.h",
+              "RelativeToolTip": "Taller1ED\\NodoZapato.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-20T21:43:48.541Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -36,7 +70,7 @@
               "RelativeDocumentMoniker": "Taller1ED\\estanteria.h",
               "ToolTip": "C:\\Users\\Ximena\\OneDrive - alumnos.ucn.cl\\Documentos\\GitHub\\Taller1ED\\Taller1ED\\estanteria.h",
               "RelativeToolTip": "Taller1ED\\estanteria.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAD8AAAAAAAAA",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAAAGEAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-04-20T14:20:54.583Z",
               "EditorCaption": ""
@@ -62,14 +96,14 @@
               "RelativeDocumentMoniker": "Taller1ED\\estanteria.cpp",
               "ToolTip": "C:\\Users\\Ximena\\OneDrive - alumnos.ucn.cl\\Documentos\\GitHub\\Taller1ED\\Taller1ED\\estanteria.cpp",
               "RelativeToolTip": "Taller1ED\\estanteria.cpp",
-              "ViewState": "AQIAAF0AAAAAAAAAAAAAAHcAAAAjAAAA",
+              "ViewState": "AQIAAMwAAAAAAAAAAAAAAOIAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-04-20T03:24:14.868Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\Ximena\\OneDrive - alumnos.ucn.cl\\Documentos\\GitHub\\Taller1ED\\Taller1ED\\main.cpp",
               "RelativeDocumentMoniker": "Taller1ED\\main.cpp",

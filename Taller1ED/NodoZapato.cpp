@@ -1,7 +1,7 @@
 #include "NodoZapato.h"
 
 
-NodoZapato::NodoZapato(Zapato* zapato, int x, int y, NodoZapato* nodoDeArriba, NodoZapato* nodoDeIzquierda) : Zapato(
+NodoZapato::NodoZapato(class Zapato* zapato, int x, int y, NodoZapato* nodoDeArriba, NodoZapato* nodoDeIzquierda) : Zapato(
     zapato), x(x), y(y), nodoDeArriba(nodoDeArriba), nodoDeIzquierda(nodoDeIzquierda) {}
 
 NodoZapato::~NodoZapato() {
@@ -27,7 +27,7 @@ NodoZapato* NodoZapato::getNodoDeIzquierda() const {
     return nodoDeIzquierda;
 }
 
-void NodoZapato::setZapato(Zapato *zapato) {
+void NodoZapato::setZapato(class Zapato *zapato) {
     Zapato = zapato;
 }
 

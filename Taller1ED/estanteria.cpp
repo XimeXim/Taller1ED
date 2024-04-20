@@ -1,13 +1,14 @@
 
 #include "Estanteria.h"
-#include "libxl.h"
+//#include "libxl.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
 
 #include "zapato.h"
 
-using namespace libxl;
+
+//using namespace libxl;
 
 
 Estanteria::Estanteria() {
@@ -214,29 +215,82 @@ int porcentajeColorNegroVendido(int cantZapatosNegrosVendidos, int cantZapatosVe
     return porcentajeZapatosNegrosVendidos;
 }
 
+bool Estanteria::rellenarEstante(class NodoZapato* mppBodega) {
+    
+    
+    std::string input;
+    std::cout << "Porfavor, ingrese el modelo con el que desea rellenar el estante: ";
+    std::cin >> input;
+
+    //mppBodega = lecturaBodega();
+
+    try {
+        int modeloBuscado = std::stoi(input);
+        std::cout << "El modelo ingresado es: " << modeloBuscado << std::endl;
+        std::cout << "Buscando modelo..." << std::endl;
+        std::string inputTalla;
+        if (buscarModeloZapato(modeloBuscado) == true) {
+            std::cout << "Se encontraron zapatos de este modelo! Porfavor ingrese tallas que quiere reponer: " << std::endl;
+            std::cin >> inputTalla;
+
+            try {
+                int tallaBuscada = std::stoi(input);
+                std::cout << "La talla ingresada es: " << tallaBuscada << std::endl;
+                std::cout << "Buscando talla..." << std::endl;
+
+                if (buscarTallaZapato(tallaBuscada) == true) {
+                    
+                }
+
+            }
+            catch (const std::invalid_argument& e) {
+                std::cerr << "Error: El modelo que ingreso no es un válido.Porfavor ingrese un numero valido." << std::endl;
+            }
+            catch (const std::out_of_range& e) {
+                std::cerr << "Error: El número ingresado está fuera del rango de un int." << std::endl;
+            }
+        }
+    }
+    catch (const std::invalid_argument& e) {
+        std::cerr << "Error: El modelo que ingreso no es un válido.Porfavor ingrese un numero valido." << std::endl;
+    }
+    catch (const std::out_of_range& e) {
+        std::cerr << "Error: El número ingresado está fuera del rango de un int." << std::endl;
+    }
+
+    
+}
+
+
+NodoZapato Estanteria::lecturaBodega() {
+
+}
 //FALTA AGREGAR A LA ESTANTERIA Y PROBAR SI REALMENTE FUNCA
+
+
+/*
 void Estanteria::lecturaArchivos() {
-    printf("Cargando estante...\n")
+    printf("Cargando estante...\n");
+        
+        Book stock = xlCreateBook();
+        Book bodega = xlCreateBook();
+        NodoZapato* mpp = new NodoZapato();
 
-    //// leer excel  stock
-    Book* stock = xlCreateBook();
-    Book* bodega = xlCreateBook();
-
-    if (stock->load(L"stock.xls"))
+    if (stock->load(L"stock.xlsx"))
     {
-        Sheet* hoja = stock->getSheet(0);
+        class Sheet* hoja = stock->getSheet(0);
 
         if (hoja)
         {
-            Estanteria* estante;
-
-            for (int fila = 1; fila < hoja->lastRow(); fila++)
+            for (int i = 1; i < hoja->lastRow(); i++)
             {
-                for (int columna = 0; columna < hoja->lastCol(); columna++)
+                
+                for (int j = 0; j < hoja->lastCol(); j++)
                 {
+
                     Zapato* zap = new Zapato();
 
-                    std::string modelo;
+                    int modelo;
                     int talla;
                     int precio;
                     int cantidadPares;
@@ -246,56 +300,109 @@ void Estanteria::lecturaArchivos() {
 
                     //leer valores y asignar a atributos de zapato
 
-                    switch (columna)[{
+                    switch (j){
                     case 0:
-                        modelo = hoja->readStr(fila, columna);
+                        modelo = hoja->readNum(i, j);
+                        zap->setModelo(modelo);
                         break;
                     case 1:
-                        talla = hoja->readNum(fila, columna);
+                        talla = hoja->readNum(i, j);
+                        zap->setTalla(talla);
                         break;
                     case 2:
-                        precio = hoja->readNum(fila, columna);
+                        precio = hoja->readNum(i, j);
+                        zap->setPrecio(precio);
                         break;
                     case 3:
-                        cantidadPares = hoja->readNum(fila, columna);
+                        cantidadPares = hoja->readNum(i, j);
+                        zap->setCantidadPares(cantidadPares);
                         break;
                     case 4:
-                        color = hoja->readStr(fila, columna);
+                        color = hoja->readStr(i, j);
+                        zap->setColor(color);
                         break;
                     case 5:
-                        genero = hoja->readStr(fila, columna);
+                        genero = hoja->readStr(i, j);
+                        zap->setGenero(genero);
                         break;
                     case 6:
-                        cordones = hoja->readBool(fila, columna);
+                        cordones = hoja->readBool(i, j);
+                        zap->setCordones(cordones);
                         break;
                     default:
                         break;
                     }
-
+                    NodoZapato* zapatoInsertado;
+                    zapatoInsertado->setZapato(zap);
+                    
                 }
+                
             }
         }
+        stock->release();
     }
-    stock->release();
-    return 0;
+
 }
 
+//Hacer otro metodo para ordenarla mpp segun modelo y talla
+
     //actualizar excel
-bool Estanteria::actualizarExcel()
+bool Estanteria::actualizarExcel(NodoZapato* mpp, int largo, int alto)
 {
     Book* estanteActualizado = xlCreateXMLBook();
+
     if (estanteActualizado)
     {
-        Sheet* hoja = estanteActualizado->addSheet(L"Sheet1");
-        if (hoja)
+        std::string archivoStock = "stock.xlsx";
+
+        if (estanteActualizado->load(archivoStock))
         {
-            // adaptar a que guarde como queda
-            hoja->writeStr(2, 1, L"Hello, World !");
-            hoja->writeNum(3, 1, 1000);
+            Sheet* hoja = estanteActualizado->getSheet(0);
+            if (hoja)
+            {
+                for (int i = 0; i < alto; i++)
+                {
+                    for (int j = 0; j < alto; j++)
+                    {
+                        switch (j)[{
+                        case 0:
+                            hoja->writeNum(i + 1, j, mpp[i][j]->getZapato()->getModelo());
+                            break;
+                        case 1:
+                            hoja->writeNum(i + 1, j, mpp[i][j]->getZapato()->getTalla());
+                            break;
+                        case 2:
+                            hoja->writeNum(i + 1, j, mpp[i][j]->getZapato()->getPrecio());
+                            break;
+                        case 3:
+                            hoja->writeNum(i + 1, j, mpp[i][j]->getZapato()->getCantidadPares());
+                            break;
+                        case 4:
+                            hoja->writeStr(i + 1, j, mpp[i][j]->getZapato()->getColor());
+                            break;
+                        case 5:
+                            hoja->writeStr(i + 1, j, mpp[i][j]->getZapato()->getGenero());
+                            break;
+                        case 6:
+                            hoja->writeBool(i + 1, j, mpp[i][j]->getZapato()->getCordones());
+                            break;
+                        default:
+                            break;
+                        }
+
+                    }
+                }
+                estanteActualizado->save(archivoStock);
+            }
+
         }
-        hoja->save(L"stock.xls");
-        hoja->release();
+        estanteActualizado->release();
     }
-    return 0;
+
+    Book* bodegaActualizada = xlCreateXMLBook();
+    if (bodegaActualizada) {
+        std::string archivoBodega = "bodega.xlsx";
+    }
+
 }
 */

@@ -1,0 +1,3 @@
+C:/Users/Ximena/OneDrive - alumnos.ucn.cl/Documentos/GitHub/Taller1ED/out/build/x64-Debug/CMakeFiles/Taller1ED.dir
+C:/Users/Ximena/OneDrive - alumnos.ucn.cl/Documentos/GitHub/Taller1ED/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/Ximena/OneDrive - alumnos.ucn.cl/Documentos/GitHub/Taller1ED/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir

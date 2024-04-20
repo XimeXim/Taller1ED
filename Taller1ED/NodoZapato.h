@@ -17,29 +17,29 @@ private:
 public:
     //Constructor, destrcutor, gets y sets del nodozapato.
     //REVISAR SI ES QUE EL CONSTRUCTOR DEBE ESTAR VACIO O NO
-    NodoZapato(Zapato* zapato, int x, int y, NodoZapato* nodoDeArriba, NodoZapato* nodoDeIzquierda);
+    NodoZapato(class Zapato* zapato, int x, int y, NodoZapato* nodoDeArriba, NodoZapato* nodoDeIzquierda);
 
     virtual ~NodoZapato();
 
-    Zapato* getZapato() const;
+    class Zapato* getZapato() const;
 
     int getX() const;
 
     int getY() const;
 
-    NodoZapato* getNodoDeArriba() const;
+    class NodoZapato* getNodoDeArriba() const;
 
-    NodoZapato* getNodoDeIzquierda() const;
+    class NodoZapato* getNodoDeIzquierda() const;
 
-    void setZapato(Zapato* zapato);
+    void setZapato(class Zapato* zapato);
 
     void setX(int x);
 
     void setY(int y);
 
-    void setNodoDeArriba(NodoZapato* nodoDeArriba);
+    void setNodoDeArriba(class NodoZapato* nodoDeArriba);
 
-    void setNodoDeIzquierda(NodoZapato* nodoDeIzquierda);
+    void setNodoDeIzquierda(class NodoZapato* nodoDeIzquierda);
 
 };
 

@@ -84,9 +84,17 @@ public:
 
     std::vector <int> tallaMasVendida(std::vector <int> tallasVendidas);
 
+    void lecturaArchivos();
+
+    bool actualizarExcel(NodoZapato* mpp, int largo, int alto);
+
     int porcentajeColorBlancoVendido(int cantZapatosBlancosVendidos, int cantZapatosVendidos);
 
     int porcentajeColorNegroVendido(int cantZapatosNegrosVendidos, int cantZapatosVendidos);
+
+    bool rellenarEstante(class NodoZapato* mppBodega);
+
+    NodoZapato lecturaBodega();
 };
 
 #endif //TALLER1_ESTANTERIA_H
