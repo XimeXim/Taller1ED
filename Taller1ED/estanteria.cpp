@@ -36,7 +36,7 @@ NodoZapato** Estanteria::getModelo() const {
     return Modelo;
 }
 
-void Estanteria::setModelo(nodoZapato** modelo) {
+void Estanteria::setModelo(NodoZapato** modelo) {
     Modelo = modelo;
 }
 
@@ -48,16 +48,60 @@ void Estanteria::setTalla(NodoZapato** talla) {
     Talla = talla;
 }
 
-const int* Estanteria::getModelosVendidos() const {
+int Estanteria::getCantZapatosBlancosVendidos() const {
+    return cantZapatosBlancosVendidos;
+}
+
+void Estanteria::setCantZapatosBlancosVendidos(int cantZapatosBlancosVendidos) {
+    Estanteria::cantZapatosBlancosVendidos = cantZapatosBlancosVendidos;
+}
+
+int Estanteria::getCantZapatosNegrosVendidos() const {
+    return cantZapatosNegrosVendidos;
+}
+
+void Estanteria::setCantZapatosNegrosVendidos(int cantZapatosNegrosVendidos) {
+    Estanteria::cantZapatosNegrosVendidos = cantZapatosNegrosVendidos;
+}
+
+int Estanteria::getVentasTotales() const {
+    return ventasTotales;
+}
+
+void Estanteria::setVentasTotales(int ventasTotales) {
+    Estanteria::ventasTotales = ventasTotales;
+}
+
+const std::vector<std::string> &Estanteria::getModelosVendidos() const {
     return modelosVendidos;
 }
 
-const int* Estanteria::getTallasVendidas() const {
+void Estanteria::setModelosVendidos(const std::vector<std::string> &modelosVendidos) {
+    Estanteria::modelosVendidos = modelosVendidos;
+}
+
+const std::vector<int> &Estanteria::getTallasVendidas() const {
     return tallasVendidas;
 }
 
-const std::string* Estanteria::getColoresVendidos() const {
+void Estanteria::setTallasVendidas(const std::vector<int> &tallasVendidas) {
+    Estanteria::tallasVendidas = tallasVendidas;
+}
+
+const std::vector<std::string> &Estanteria::getColoresVendidos() const {
     return coloresVendidos;
+}
+
+void Estanteria::setColoresVendidos(const std::vector<std::string> &coloresVendidos) {
+    Estanteria::coloresVendidos = coloresVendidos;
+}
+
+int Estanteria::getCantZapatosVendidos() const {
+    return cantZapatosVendidos;
+}
+
+void Estanteria::setCantZapatosVendidos(int cantZapatosVendidos) {
+    Estanteria::cantZapatosVendidos = cantZapatosVendidos;
 }
 
 bool Estanteria::buscarModeloZapato(int modeloBuscado) {
@@ -88,19 +132,30 @@ bool Estanteria::buscarTallaZapato(int tallaBuscada) {
 
 
 bool Estanteria::venderZapato(int modeloBuscado, int tallaBuscada) {
-    if (buscarModeloZapato(modeloBuscado) && buscarTallaZapato(tallaBuscada)) {
+
+    if (buscarModeloZapato(modeloBuscado) && buscarTallaZapato(tallaBuscada)){
         for (int i = 0; i < alto; ++i) {
             NodoZapato* nodoZapatoAObtener = Modelo[i]->getNodoDeIzquierda();
             while (nodoZapatoAObtener != Modelo[i]) {
                 if (nodoZapatoAObtener->getX() == modeloBuscado && nodoZapatoAObtener->getY() == tallaBuscada) {
                     nodoZapatoAObtener->getZapato()->setCantidadPares(
-                        nodoZapatoAObtener->getZapato()->getCantidadPares() - 1);
-
-
-
-
-
-
+                            nodoZapatoAObtener->getZapato()->getCantidadPares() - 1);
+                    std::string modeloZapatoVendido = nodoZapatoAObtener->getZapato()->getModelo();
+                    int tallaZapatoVendida = nodoZapatoAObtener->getZapato()->getTalla();
+                    std::string colorZapatoVendido = nodoZapatoAObtener->getZapato()->getColor();
+                    modelosVendidos.push_back(modeloZapatoVendido);
+                    tallasVendidas.push_back(tallaZapatoVendida);
+                    coloresVendidos.push_back(colorZapatoVendido);
+                    if (nodoZapatoAObtener->getZapato()->getColor() == "Blanco" || nodoZapatoAObtener->getZapato()->getColor() == "blanco"){
+                        cantZapatosBlancosVendidos = cantZapatosBlancosVendidos + 1;
+                        cantZapatosVendidos = cantZapatosVendidos + 1;
+                        ventasTotales = ventasTotales + nodoZapatoAObtener->getZapato()->getPrecio();
+                    }
+                    if (nodoZapatoAObtener->getZapato()->getColor() == "Negro" || nodoZapatoAObtener->getZapato()->getColor() == "negro"){
+                        cantZapatosNegrosVendidos = cantZapatosNegrosVendidos + 1;
+                        cantZapatosVendidos = cantZapatosVendidos + 1;
+                        ventasTotales = ventasTotales + nodoZapatoAObtener->getZapato()->getPrecio();
+                    }
                     return true;
                 }
             }
@@ -109,11 +164,55 @@ bool Estanteria::venderZapato(int modeloBuscado, int tallaBuscada) {
     }
 }
 
-int Estanteria::modeloMasVendido() {}
+std::vector <std::string> Estanteria::modeloMasVendido(std::vector <std::string> modelosVendidos) {
+    std::unordered_map<std::string, int> frecuenciaModelo;
+    std::string modeloMasVeces = modelosVendidos[0];
+    int numeroVecesPresente = frecuenciaModelo[modeloMasVeces];
+    for (int i = 0; i < modelosVendidos.size(); ++i) {
+        frecuenciaModelo[modelosVendidos[i]]++;
+    }
+    std::vector <std::string> modelosMasRepetidos;
+    for (int i = 0; i < modelosVendidos.size(); i++){
+        if(frecuenciaModelo[modelosVendidos[i]] >= numeroVecesPresente){
+            modelosMasRepetidos.push_back(modelosVendidos[i]);
+            frecuenciaModelo[modelosVendidos[i]] = 0;
+        }
+    }
+    return modelosMasRepetidos;
+}
 
-int Estanteria::tallaMasVendida() {}
+std::vector <int> Estanteria::tallaMasVendida(std::vector <int> tallasVendidas) {
+    std::unordered_map<int, int> frecuenciaTalla;
+    int tallaMasVeces = tallasVendidas[0];
+    int numeroVecesPresente = frecuenciaTalla[tallaMasVeces];
+    for (int i = 0; i < tallasVendidas.size(); ++i) {
+        frecuenciaTalla[tallasVendidas[i]]++;
+    }
+    std::vector <int> tallasMasRepetidas;
+    for (int i = 0; i < tallasVendidas.size(); i++){
+        if (frecuenciaTalla[tallasVendidas[i]] >= numeroVecesPresente){
+            tallasMasRepetidas.push_back(tallasVendidas[i]);
+            frecuenciaTalla[tallasVendidas[i]] = 0;
+        }
+    }
+    return tallasMasRepetidas;
+}
 
-int Estanteria::porcentajeColorMasVendido() {}
+int porcentajeColorBlancoVendido(int cantZapatosBlancosVendidos, int cantZapatosVendidos) {
+
+    int parteBlanca = cantZapatosBlancosVendidos;
+    int totalZapatosVendidos = cantZapatosVendidos;
+    int porcentajeZapatosBlancosVendidos = (parteBlanca * 100) / cantZapatosVendidos;
+    return porcentajeZapatosBlancosVendidos;
+}
+
+int porcentajeColorNegroVendido(int cantZapatosNegrosVendidos, int cantZapatosVendidos) {
+
+    int parteNegra = cantZapatosNegrosVendidos;
+    int totalZapatosVendidos = cantZapatosVendidos;
+    int porcentajeZapatosNegrosVendidos = (parteNegra * 100) / cantZapatosVendidos;
+    return porcentajeZapatosNegrosVendidos;
+}
 
 //FALTA AGREGAR A LA ESTANTERIA Y PROBAR SI REALMENTE FUNCA
 void Estanteria::lecturaArchivos() {
