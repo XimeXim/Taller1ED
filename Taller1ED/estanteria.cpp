@@ -115,123 +115,87 @@ int Estanteria::tallaMasVendida() {}
 
 int Estanteria::porcentajeColorMasVendido() {}
 
-/*
+//FALTA AGREGAR A LA ESTANTERIA Y PROBAR SI REALMENTE FUNCA
 void Estanteria::lecturaArchivos() {
     printf("Cargando estante...\n")
-    std::ifstream archivoStock("stock.csv");
 
-    if (!archivoStock.is_open()){
-        std::cerr << "No se pudo abrir el archivo.." << std::endl;
-        return;
-    }
+    //// leer excel  stock
+    Book* stock = xlCreateBook();
+    Book* bodega = xlCreateBook();
 
-    Estanteria* mpp = new estante();
-
-    Zapato* z;
-    std::string archivoCargado;
-    alto = 1000;
-    while (std::getline(archivoStock, archivoCargado)){
-        std::istringstream ss (archivoCargado);
-        z = new zapato();
-
-        std::string modelo;
-        int talla;
-        int precio;
-        int cantidadPares;
-        std::string color;
-        std::string genero;
-        bool cordones;
-
-        std::getline(ss, modelo, ',');
-        std::getline(ss, talla, ',');
-        std::getline(ss, precio, ',');
-        std::getline(ss, cantidadPares, ',');
-        std::getline(ss, color, ',');
-        std::getline(ss, genero, ',');
-        std::getline(ss, cordones, ',');
-
-    }
-
-    //// leer excel 
-    Estanteria* estante = excelEstante();
-
-    if (estante->load(L"stock.xls"))
+    if (stock->load(L"stock.xls"))
     {
-        Sheet* sheet = estante->getSheet(0);
-        if (sheet)
+        Sheet* hoja = stock->getSheet(0);
+
+        if (hoja)
         {
-            for (int fila = sheet->firstRow(); fila < sheet->lastRow(); ++row)
+            Estanteria* estante;
+
+            for (int fila = 1; fila < hoja->lastRow(); fila++)
             {
-                for (int columna = sheet->firstCol(); columna < sheet->lastCol(); ++columna)
+                for (int columna = 0; columna < hoja->lastCol(); columna++)
                 {
-                    CellType tipoCelda = sheet->tipoCelda(fila, columna);
-                    std::wcout << "(" << fila << ", " << columna << ") = ";
-                    if (sheet->isFormula(row, col))
-                    {
-                        const wchar_t* s = sheet->readFormula(fila, columna);
-                        std::wcout << (s ? s : L"null") << " [formula]";
+                    Zapato* zap = new Zapato();
+
+                    std::string modelo;
+                    int talla;
+                    int precio;
+                    int cantidadPares;
+                    std::string color;
+                    std::string genero;
+                    bool cordones;
+
+                    //leer valores y asignar a atributos de zapato
+
+                    switch (columna)[{
+                    case 0:
+                        modelo = hoja->readStr(fila, columna);
+                        break;
+                    case 1:
+                        talla = hoja->readNum(fila, columna);
+                        break;
+                    case 2:
+                        precio = hoja->readNum(fila, columna);
+                        break;
+                    case 3:
+                        cantidadPares = hoja->readNum(fila, columna);
+                        break;
+                    case 4:
+                        color = hoja->readStr(fila, columna);
+                        break;
+                    case 5:
+                        genero = hoja->readStr(fila, columna);
+                        break;
+                    case 6:
+                        cordones = hoja->readBool(fila, columna);
+                        break;
+                    default:
+                        break;
                     }
-                    else
-                    {
-                        switch (tipoCelda)
-                        {
-                        case CELLTYPE_EMPTY: std::wcout << "[empty]"; break;
-                        case CELLTYPE_NUMBER:
-                        {
-                            double d = sheet->readNum(fila, columna);
-                            std::wcout << d << " [number]";
-                            break;
-                        }
-                        case CELLTYPE_STRING:
-                        {
-                            const wchar_t* s = sheet->readStr(fila, columna);
-                            std::wcout << (s ? s : L"null") << " [string]";
-                            break;
-                        }
-                        case CELLTYPE_BOOLEAN:
-                        {
-                            bool b = sheet->readBool(fila, columna);
-                            std::wcout << (b ? "true" : "false") << " [boolean]";
-                            break;
-                        }
-                        case CELLTYPE_BLANK: std::wcout << "[blank]"; break;
-                        case CELLTYPE_ERROR: std::wcout << "[error]"; break;
-                        }
-                    }
-                    std::wcout << std::endl;
+
                 }
             }
         }
     }
-
-    estante->release();
+    stock->release();
     return 0;
-}
-
-
-void Estanteria::estadisticaPorcentaje(estante* mpp) {
-    nodoZapato* aux;
-    int totNegro = 0;
-    std::cout << "Porcentaje de zapatos escolares vendidos vs zapatillas:" << "\n";
-    for (int i = 0; i < largo; i++) {
-        if(nodoZapato[i])
-    }
 }
 
     //actualizar excel
 bool Estanteria::actualizarExcel()
 {
-    Estanteria* estanteActual = ExcelActualizadoEstante(); // para el excel
-    if(estante)
+    Book* estanteActualizado = xlCreateXMLBook();
+    if (estanteActualizado)
     {
-        Sheet* sheet = estanteActual->addSheet(L"Estante Actualizado");
-        if(sheet)
+        Sheet* hoja = estanteActualizado->addSheet(L"Sheet1");
+        if (hoja)
         {
-            sheet->writeStr(2, 1, L"Hello, World !");
-            sheet->writeNum(3, 1, 1000);
+            // adaptar a que guarde como queda
+            hoja->writeStr(2, 1, L"Hello, World !");
+            hoja->writeNum(3, 1, 1000);
         }
-        estanteActual->save(L"stockUpdate.xls");
-        estanteActual->release();
+        hoja->save(L"stock.xls");
+        hoja->release();
     }
     return 0;
 }

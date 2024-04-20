@@ -1,6 +1,6 @@
 
-#ifndef TALLER1_ESTANTE_H
-#define TALLER1_ESTANTE_H
+#ifndef TALLER1_ESTANTERIA_H
+#define TALLER1_ESTANTERIA_H
 #include "NodoZapato.h"
 #include "Zapato.h"
 
@@ -65,4 +65,4 @@ public:
 
 };
 
-#endif //TALLER1_ESTANTE_H
+#endif //TALLER1_ESTANTERIA_H
