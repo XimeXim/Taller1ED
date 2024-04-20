@@ -1,10 +1,13 @@
 
 #include "Estanteria.h"
+#include "libxl.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
 
 #include "zapato.h"
+
+using namespace libxl;
 
 
 Estanteria::Estanteria() {
@@ -148,7 +151,63 @@ void Estanteria::lecturaArchivos() {
         std::getline(ss, cordones, ',');
 
     }
+
+    //// leer excel 
+    Estanteria* estante = excelEstante();
+
+    if (estante->load(L"stock.xls"))
+    {
+        Sheet* sheet = estante->getSheet(0);
+        if (sheet)
+        {
+            for (int fila = sheet->firstRow(); fila < sheet->lastRow(); ++row)
+            {
+                for (int columna = sheet->firstCol(); columna < sheet->lastCol(); ++columna)
+                {
+                    CellType tipoCelda = sheet->tipoCelda(fila, columna);
+                    std::wcout << "(" << fila << ", " << columna << ") = ";
+                    if (sheet->isFormula(row, col))
+                    {
+                        const wchar_t* s = sheet->readFormula(fila, columna);
+                        std::wcout << (s ? s : L"null") << " [formula]";
+                    }
+                    else
+                    {
+                        switch (tipoCelda)
+                        {
+                        case CELLTYPE_EMPTY: std::wcout << "[empty]"; break;
+                        case CELLTYPE_NUMBER:
+                        {
+                            double d = sheet->readNum(fila, columna);
+                            std::wcout << d << " [number]";
+                            break;
+                        }
+                        case CELLTYPE_STRING:
+                        {
+                            const wchar_t* s = sheet->readStr(fila, columna);
+                            std::wcout << (s ? s : L"null") << " [string]";
+                            break;
+                        }
+                        case CELLTYPE_BOOLEAN:
+                        {
+                            bool b = sheet->readBool(fila, columna);
+                            std::wcout << (b ? "true" : "false") << " [boolean]";
+                            break;
+                        }
+                        case CELLTYPE_BLANK: std::wcout << "[blank]"; break;
+                        case CELLTYPE_ERROR: std::wcout << "[error]"; break;
+                        }
+                    }
+                    std::wcout << std::endl;
+                }
+            }
+        }
+    }
+
+    estante->release();
+    return 0;
 }
+
 
 void Estanteria::estadisticaPorcentaje(estante* mpp) {
     nodoZapato* aux;
@@ -157,4 +216,23 @@ void Estanteria::estadisticaPorcentaje(estante* mpp) {
     for (int i = 0; i < largo; i++) {
         if(nodoZapato[i])
     }
-}*/
+}
+
+    //actualizar excel
+bool Estanteria::actualizarExcel()
+{
+    Estanteria* estanteActual = ExcelActualizadoEstante(); // para el excel
+    if(estante)
+    {
+        Sheet* sheet = estanteActual->addSheet(L"Estante Actualizado");
+        if(sheet)
+        {
+            sheet->writeStr(2, 1, L"Hello, World !");
+            sheet->writeNum(3, 1, 1000);
+        }
+        estanteActual->save(L"stockUpdate.xls");
+        estanteActual->release();
+    }
+    return 0;
+}
+*/
