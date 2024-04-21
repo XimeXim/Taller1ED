@@ -12,6 +12,8 @@ private:
 
     int largo;
     int alto;
+    NodoZapato* ACOL;
+    NodoZapato* AROW;
     int cantZapatosBlancosVendidos = 0;
     int cantZapatosNegrosVendidos = 0;
     int cantZapatosVendidos = 0;
@@ -21,7 +23,7 @@ private:
     std::vector<std::string> modelosVendidos;
     std::vector<int> tallasVendidas;
     std::vector<std::string> coloresVendidos;
-
+    
 
 
 public:
@@ -29,6 +31,8 @@ public:
     explicit Estanteria();
 
     virtual ~Estanteria();
+
+    Estanteria(int alto, int largo);
 
     int getLargo() const;
 
@@ -84,17 +88,12 @@ public:
 
     std::vector <int> tallaMasVendida(std::vector <int> tallasVendidas);
 
-    void lecturaArchivos();
-
-    bool actualizarExcel(NodoZapato* mpp, int largo, int alto);
-
     int porcentajeColorBlancoVendido(int cantZapatosBlancosVendidos, int cantZapatosVendidos);
 
     int porcentajeColorNegroVendido(int cantZapatosNegrosVendidos, int cantZapatosVendidos);
 
-    bool rellenarEstante(class NodoZapato* mppBodega);
+    void agregarAEstante(class Zapato* zap, int x, int y);
 
-    NodoZapato lecturaBodega();
 };
 
 #endif //TALLER1_ESTANTERIA_H

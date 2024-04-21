@@ -62,13 +62,12 @@ bool stringToBool(string str){
 
 void Sistema::lecturaArchivos() {
 
-    e = new Estanteria();
     fstream archivoStock("stock.csv");
     printf("Cargando...\n");
     string input = "";
-
+    
+    e = new Estanteria(1000, 1000);
     Zapato* zap;
-    NodoZapato* nodo;
 
     while (getline(archivoStock, input)) 
     {
@@ -101,16 +100,16 @@ void Sistema::lecturaArchivos() {
         cordones = stringToBool(cordonesAux);
 
         zap = new Zapato(modeloAux,talla,precio,cantidadPares,color,genero,cordones);
-
-
+        e->agregarAEstante(zap, modelo, talla);
+        
 
     }
 
     fstream archivoBodega("bodega.csv");
     string inputB = "";
     
+    eB = new Estanteria(1000, 1000);
     Zapato* zapBodega;
-    NodoZapato* nodoB;
 
     while (getline(archivoBodega, inputB))
     {
@@ -144,8 +143,7 @@ void Sistema::lecturaArchivos() {
 
         zapBodega = new Zapato(modeloAuxB, tallaB, precioB, cantidadParesB, colorB, generoB, cordonesB);
 
-       // eB->setModelo() = new NodoZapato(zapBodega, modeloB, tallaB);
-
+        eB->agregarAEstante(zapBodega,modeloB, tallaB);
 
     }
 

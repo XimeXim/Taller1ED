@@ -4,12 +4,20 @@
 #include <fstream>
 #include <sstream>
 
+#include "NodoZapato.h"
 #include "zapato.h"
 
 Estanteria::Estanteria() {
 }
 
 Estanteria::~Estanteria() {
+}
+
+Estanteria::Estanteria(int alto, int largo) {
+    Estanteria::ACOL = new NodoZapato[largo + 1];
+    Estanteria::AROW = new NodoZapato[alto + 1];
+    Estanteria::alto = alto;
+    Estanteria::largo = largo;
 }
 
 int Estanteria::getLargo() const {
@@ -210,4 +218,25 @@ int porcentajeColorNegroVendido(int cantZapatosNegrosVendidos, int cantZapatosVe
     return porcentajeZapatosNegrosVendidos;
 }
 
+void Estanteria::agregarAEstante(class Zapato* zap, int x, int y) {
+    NodoZapato* nodo = new NodoZapato(zap, x, y);
 
+    NodoZapato* aux = &AROW[x];
+    while (aux->getNodoDeIzquierda()->getY() > 0 && aux->getNodoDeIzquierda()->getY() > y) {
+        if (aux->getNodoDeIzquierda()->getY() == y) {
+            return;
+        }
+        aux = aux->getNodoDeIzquierda();
+    }
+    nodo->setNodoDeIzquierda(aux->getNodoDeIzquierda());
+    aux->setNodoDeIzquierda(nodo);
+
+    NodoZapato* AUX = &ACOL[y];
+    while (AUX->getNodoDeArriba()->getX() > 0 && AUX->getNodoDeArriba()->getX() > x) {
+        AUX = AUX->getNodoDeArriba();
+    }
+    nodo->setNodoDeArriba(AUX->getNodoDeArriba());
+    AUX->setNodoDeArriba(nodo);
+
+    return;
+}

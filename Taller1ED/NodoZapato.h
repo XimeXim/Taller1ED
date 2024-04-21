@@ -19,6 +19,10 @@ public:
     //REVISAR SI ES QUE EL CONSTRUCTOR DEBE ESTAR VACIO O NO
     NodoZapato(class Zapato* zapato, int x, int y, NodoZapato* nodoDeArriba, NodoZapato* nodoDeIzquierda);
 
+    NodoZapato(class Zapato* zapato, int x, int y);
+
+    NodoZapato();
+
     virtual ~NodoZapato();
 
     class Zapato* getZapato() const;

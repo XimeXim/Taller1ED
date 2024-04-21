@@ -4,6 +4,20 @@
 NodoZapato::NodoZapato(class Zapato* zapato, int x, int y, NodoZapato* nodoDeArriba, NodoZapato* nodoDeIzquierda) : Zapato(
     zapato), x(x), y(y), nodoDeArriba(nodoDeArriba), nodoDeIzquierda(nodoDeIzquierda) {}
 
+NodoZapato::NodoZapato(class Zapato* zapato, int x, int y)
+{
+    NodoZapato::Zapato = zapato;
+    NodoZapato::x = x;
+    NodoZapato::y = y;
+    NodoZapato::nodoDeArriba = nullptr;
+    NodoZapato::nodoDeIzquierda = nullptr;
+
+}
+
+NodoZapato::NodoZapato() {
+
+}
+
 NodoZapato::~NodoZapato() {
 }
 
