@@ -81,6 +81,14 @@ build CMakeFiles\Taller1ED.dir\Taller1ED\Zapato.cpp.obj: CXX_COMPILER__Taller1ED
   TARGET_COMPILE_PDB = CMakeFiles\Taller1ED.dir\
   TARGET_PDB = Taller1ED.pdb
 
+build CMakeFiles\Taller1ED.dir\Taller1ED\Sistema.cpp.obj: CXX_COMPILER__Taller1ED_unscanned_Debug C$:\Users\Ximena\OneDrive$ -$ alumnos.ucn.cl\Documentos\GitHub\Taller1ED\Taller1ED\Sistema.cpp || cmake_object_order_depends_target_Taller1ED
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -MDd -Zi
+  INCLUDES = -I"C:\Users\Ximena\OneDrive - alumnos.ucn.cl\Documentos\GitHub\Taller1ED\Taller1ED"
+  OBJECT_DIR = CMakeFiles\Taller1ED.dir
+  OBJECT_FILE_DIR = CMakeFiles\Taller1ED.dir\Taller1ED
+  TARGET_COMPILE_PDB = CMakeFiles\Taller1ED.dir\
+  TARGET_PDB = Taller1ED.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Taller1ED
@@ -89,7 +97,7 @@ build CMakeFiles\Taller1ED.dir\Taller1ED\Zapato.cpp.obj: CXX_COMPILER__Taller1ED
 #############################################
 # Link the executable Taller1ED.exe
 
-build Taller1ED.exe: CXX_EXECUTABLE_LINKER__Taller1ED_Debug CMakeFiles\Taller1ED.dir\Taller1ED\estanteria.cpp.obj CMakeFiles\Taller1ED.dir\Taller1ED\main.cpp.obj CMakeFiles\Taller1ED.dir\Taller1ED\NodoZapato.cpp.obj CMakeFiles\Taller1ED.dir\Taller1ED\Zapato.cpp.obj
+build Taller1ED.exe: CXX_EXECUTABLE_LINKER__Taller1ED_Debug CMakeFiles\Taller1ED.dir\Taller1ED\estanteria.cpp.obj CMakeFiles\Taller1ED.dir\Taller1ED\main.cpp.obj CMakeFiles\Taller1ED.dir\Taller1ED\NodoZapato.cpp.obj CMakeFiles\Taller1ED.dir\Taller1ED\Zapato.cpp.obj CMakeFiles\Taller1ED.dir\Taller1ED\Sistema.cpp.obj
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -MDd -Zi
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

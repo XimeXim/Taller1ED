@@ -12,4 +12,4 @@ add_executable(Taller1ED
         Taller1ED/NodoZapato.cpp
         Taller1ED/NodoZapato.h
         Taller1ED/Zapato.cpp
-        Taller1ED/Zapato.h)
+        Taller1ED/Zapato.h "Taller1ED/Sistema.cpp" "Taller1ED/sistema.h")
