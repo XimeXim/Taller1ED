@@ -13,13 +13,6 @@ Estanteria::Estanteria() {
 Estanteria::~Estanteria() {
 }
 
-Estanteria::Estanteria(int alto, int largo) {
-    Estanteria::ACOL = new NodoZapato[largo + 1];
-    Estanteria::AROW = new NodoZapato[alto + 1];
-    Estanteria::alto = alto;
-    Estanteria::largo = largo;
-}
-
 int Estanteria::getLargo() const {
     return largo;
 }
@@ -35,6 +28,7 @@ int Estanteria::getAlto() const {
 void Estanteria::setAlto(int alto) {
     Estanteria::alto = alto;
 }
+
 
 NodoZapato** Estanteria::getModelo() const {
     return Modelo;
@@ -218,10 +212,11 @@ int porcentajeColorNegroVendido(int cantZapatosNegrosVendidos, int cantZapatosVe
     return porcentajeZapatosNegrosVendidos;
 }
 
-void Estanteria::agregarAEstante(class Zapato* zap, int x, int y) {
-    NodoZapato* nodo = new NodoZapato(zap, x, y);
+void Estanteria::agregarAEstante(NodoZapato* nodo) {
+    int y = nodo->getY();
+    int x = nodo->getX();
 
-    NodoZapato* aux = &AROW[x];
+    NodoZapato* aux = Talla[x];
     while (aux->getNodoDeIzquierda()->getY() > 0 && aux->getNodoDeIzquierda()->getY() > y) {
         if (aux->getNodoDeIzquierda()->getY() == y) {
             return;
@@ -231,7 +226,7 @@ void Estanteria::agregarAEstante(class Zapato* zap, int x, int y) {
     nodo->setNodoDeIzquierda(aux->getNodoDeIzquierda());
     aux->setNodoDeIzquierda(nodo);
 
-    NodoZapato* AUX = &ACOL[y];
+    NodoZapato* AUX = Modelo[y];
     while (AUX->getNodoDeArriba()->getX() > 0 && AUX->getNodoDeArriba()->getX() > x) {
         AUX = AUX->getNodoDeArriba();
     }
@@ -239,4 +234,36 @@ void Estanteria::agregarAEstante(class Zapato* zap, int x, int y) {
     AUX->setNodoDeArriba(nodo);
 
     return;
+}
+
+void Estanteria::agregarArchivo(NodoZapato* nodo)
+{
+
+    if (nodo != NULL) {
+        std::ofstream arch;
+        arch.open("stock_test.csv", std::ios::app);
+        
+        for (int i = 0; i < largo; i++) {
+            NodoZapato* aux = Modelo[i]->getNodoDeArriba();
+            while (aux != Modelo[i]) {
+                std::string data = nodo->getZapato()->getModelo();
+                data += ",";
+                data += nodo->getZapato()->getTalla();
+                data += ",";
+                data += std::to_string(nodo->getZapato()->getPrecio());
+                data += ",";
+                data += std::to_string(nodo->getZapato()->getCantidadPares());
+                data += ",";
+                data += nodo->getZapato()->getColor();
+                data += ",";
+                data += std::to_string(nodo->getZapato()->isCordones());
+
+                arch << data << std::endl;
+                agregarArchivo(nodo->getNodoDeArriba());
+            }
+            
+        }
+        
+    }
+
 }

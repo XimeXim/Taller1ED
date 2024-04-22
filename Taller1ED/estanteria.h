@@ -12,8 +12,6 @@ private:
 
     int largo;
     int alto;
-    NodoZapato* ACOL;
-    NodoZapato* AROW;
     int cantZapatosBlancosVendidos = 0;
     int cantZapatosNegrosVendidos = 0;
     int cantZapatosVendidos = 0;
@@ -31,8 +29,6 @@ public:
     explicit Estanteria();
 
     virtual ~Estanteria();
-
-    Estanteria(int alto, int largo);
 
     int getLargo() const;
 
@@ -92,7 +88,9 @@ public:
 
     int porcentajeColorNegroVendido(int cantZapatosNegrosVendidos, int cantZapatosVendidos);
 
-    void agregarAEstante(class Zapato* zap, int x, int y);
+    void agregarAEstante(NodoZapato* nodo);
+
+    void agregarArchivo(NodoZapato* nodo);
 
 };
 

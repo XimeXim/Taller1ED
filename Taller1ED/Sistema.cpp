@@ -1,4 +1,5 @@
 #include "sistema.h"
+#include "NodoZapato.h"
 using namespace std;
 
 Sistema::Sistema()
@@ -66,8 +67,9 @@ void Sistema::lecturaArchivos() {
     printf("Cargando...\n");
     string input = "";
     
-    e = new Estanteria(1000, 1000);
+    e = new Estanteria();
     Zapato* zap;
+    NodoZapato* nodo;
 
     while (getline(archivoStock, input)) 
     {
@@ -100,15 +102,16 @@ void Sistema::lecturaArchivos() {
         cordones = stringToBool(cordonesAux);
 
         zap = new Zapato(modeloAux,talla,precio,cantidadPares,color,genero,cordones);
-        e->agregarAEstante(zap, modelo, talla);
+        nodo = new NodoZapato(zap, modelo, talla);
+        e->agregarAEstante(nodo);
         
 
     }
 
     fstream archivoBodega("bodega.csv");
     string inputB = "";
-    
-    eB = new Estanteria(1000, 1000);
+    NodoZapato* nodoB;
+    eB = new Estanteria();
     Zapato* zapBodega;
 
     while (getline(archivoBodega, inputB))
@@ -142,9 +145,9 @@ void Sistema::lecturaArchivos() {
         cordonesB = stringToBool(cordonesAuxB);
 
         zapBodega = new Zapato(modeloAuxB, tallaB, precioB, cantidadParesB, colorB, generoB, cordonesB);
-
-        eB->agregarAEstante(zapBodega,modeloB, tallaB);
-
+        nodoB = new NodoZapato(zapBodega, modeloB, tallaB);
+        eB->agregarAEstante(nodoB);
+        
     }
 
 
@@ -155,20 +158,13 @@ void Sistema::lecturaArchivos() {
     //actualizar excel
 void Sistema::actualizarArchivos()
 {
+    
     ofstream sobreEscritura;
     sobreEscritura.open("stock_test.csv");
-    Zapato* zap;
-
-    for (int i = 1; i <= e->getAlto(); i++)
-    {        
-        for (int j = 1; j <= e->getLargo(); j++)
-        {
-            //zap = e->getModelo()
-        }
-    
-    }
-
     sobreEscritura.close();
+    int x = e->getLargo();
+    NodoZapato** mpp = e->getModelo();
+    e->agregarArchivo(mpp[x]);
 
 }
 

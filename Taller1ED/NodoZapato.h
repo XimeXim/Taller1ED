@@ -21,8 +21,6 @@ public:
 
     NodoZapato(class Zapato* zapato, int x, int y);
 
-    NodoZapato();
-
     virtual ~NodoZapato();
 
     class Zapato* getZapato() const;

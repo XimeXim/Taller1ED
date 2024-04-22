@@ -14,9 +14,6 @@ NodoZapato::NodoZapato(class Zapato* zapato, int x, int y)
 
 }
 
-NodoZapato::NodoZapato() {
-
-}
 
 NodoZapato::~NodoZapato() {
 }
