@@ -20,10 +20,9 @@ private:
 public:
 	Sistema();
 	void lecturaArchivos();
-	static bool stringToBool(string str);
+	bool stringToBool(string str);
 	void actualizarArchivos();
     void MenuPrincipal();
     void MenuEstadisticas();
 	~Sistema();
-	bool rellenarEstante(Estanteria* e);
 };

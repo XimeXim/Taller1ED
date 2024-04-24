@@ -12,7 +12,7 @@ Sistema::~Sistema()
 {
 }
 
-static bool stringToBool(string str){
+bool Sistema::stringToBool(string str){
     return (str == "true" || str == "1");
 }
 
@@ -108,6 +108,7 @@ void Sistema::lecturaArchivos() {
 
 
 }
+
 
 //Hacer otro metodo para ordenarla mpp segun modelo y talla
 
