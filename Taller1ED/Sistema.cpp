@@ -146,7 +146,7 @@ void Sistema::MenuPrincipal() {
                 estanteria.venderZapato();
                 break;
             case 2:
-                estanteria.ModeloTallaRelleno(eB);
+                estanteria.ModeloTallaRelleno(eB,e);
             case 3:
                 estanteria.imprimirEstante(e);
             case 4:

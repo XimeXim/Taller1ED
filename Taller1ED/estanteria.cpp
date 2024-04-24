@@ -300,7 +300,7 @@ void Estanteria::imprimirEstante(Estanteria* e) {
     }
 }
 
-void Estanteria::ModeloTallaRelleno(Estanteria* e) const {
+void Estanteria::ModeloTallaRelleno(Estanteria* e, Estanteria* e2) {
 
     string modeloBuscado = "";
     string tallaBuscada = "";
@@ -332,9 +332,22 @@ void Estanteria::ModeloTallaRelleno(Estanteria* e) const {
                         zap = nodoZapatoAObtener->getZapato();
                         while (nodoZapatoAObtener != e->Modelo[i]) {
                             if (nodoZapatoAObtener->getX() == modelo && nodoZapatoAObtener->getY() == talla) {
-                                string modeloZapatoRelleno = nodoZapatoAObtener->getZapato()->getModelo();
-                                NodoZapato* nodo = new NodoZapato(zap, modelo, talla);
-                                e->agregarAEstante(nodo);
+                                if (e2->buscarModeloZapato(modelo) && e2->buscarTallaZapato(talla)) {
+                                    for (int i = 0; i < alto; ++i) {
+                                        NodoZapato* nodoZapatoAObtener2 = e2->Modelo[i]->getNodoDeIzquierda();
+                                        while (nodoZapatoAObtener2 != e2->Modelo[i]) {
+                                            if (nodoZapatoAObtener2->getX() == modelo && nodoZapatoAObtener2->getY() == talla) {
+                                                int cantsuma = nodoZapatoAObtener2->getZapato()->getCantidadPares();
+                                                nodoZapatoAObtener2->getZapato()->setCantidadPares(nodoZapatoAObtener->getZapato()->getCantidadPares() + cantsuma);
+                                            }
+                                        }
+                                    }
+                                }
+                                else {
+                                    string modeloZapatoRelleno = nodoZapatoAObtener->getZapato()->getModelo();
+                                    NodoZapato* nodo = new NodoZapato(zap, modelo, talla);
+                                    e->agregarAEstante(nodo);
+                                }
                             }
                         }
                     }
@@ -357,4 +370,3 @@ void Estanteria::ModeloTallaRelleno(Estanteria* e) const {
     }
 
 }
-

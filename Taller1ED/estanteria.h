@@ -92,9 +92,10 @@ public:
 
     void agregarArchivo(NodoZapato* nodo);
 
+    void ModeloTallaRelleno(Estanteria* e, Estanteria* e2);
+
     void imprimirEstante(Estanteria* e);
 
-    void ModeloTallaRelleno(Estanteria* e) const;
 
 
 };
