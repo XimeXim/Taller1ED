@@ -20,10 +20,10 @@ private:
 public:
 	Sistema();
 	void lecturaArchivos();
-	bool stringToBool(string str);
-	bool rellenarEstante(class NodoZapato* mppBodega);
+	static bool stringToBool(string str);
 	void actualizarArchivos();
     void MenuPrincipal();
     void MenuEstadisticas();
 	~Sistema();
+	bool rellenarEstante(Estanteria* e);
 };

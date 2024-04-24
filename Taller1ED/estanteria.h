@@ -92,6 +92,11 @@ public:
 
     void agregarArchivo(NodoZapato* nodo);
 
+    void imprimirEstante(Estanteria* e);
+
+    void ModeloTallaRelleno(Estanteria* e) const;
+
+
 };
 
 #endif //TALLER1_ESTANTERIA_H

@@ -3,70 +3,16 @@
 #include "estanteria.h"
 using namespace std;
 
-int main(){
-
-
-
-}
-
-
-
-
 Sistema::Sistema()
 {
+    MenuPrincipal();
 }
 
 Sistema::~Sistema()
 {
 }
 
-bool Sistema::rellenarEstante(class NodoZapato* mppBodega) {
-
-
-    std::string input;
-    std::cout << "Porfavor, ingrese el modelo con el que desea rellenar el estante: ";
-    std::cin >> input;
-
-    //mppBodega = lecturaBodega();
-
-    try {
-        int modeloBuscado = std::stoi(input);
-        std::cout << "El modelo ingresado es: " << modeloBuscado << std::endl;
-        std::cout << "Buscando modelo..." << std::endl;
-        std::string inputTalla;
-       /* if (buscarModeloZapato(modeloBuscado) == true) {
-            std::cout << "Se encontraron zapatos de este modelo! Porfavor ingrese tallas que quiere reponer: " << std::endl;
-            std::cin >> inputTalla;
-
-            try {
-                int tallaBuscada = std::stoi(input);
-                std::cout << "La talla ingresada es: " << tallaBuscada << std::endl;
-                std::cout << "Buscando talla..." << std::endl;
-
-                if (buscarTallaZapato(tallaBuscada) == true) {
-
-                }
-                
-            }
-            catch (const std::invalid_argument& e) {
-                std::cerr << "Error: El modelo que ingreso no es un v�lido.Porfavor ingrese un numero valido." << std::endl;
-            }
-            catch (const std::out_of_range& e) {
-                std::cerr << "Error: El n�mero ingresado est� fuera del rango de un int." << std::endl;
-            }
-        }*/
-    }
-    catch (const std::invalid_argument& e) {
-        std::cerr << "Error: El modelo que ingreso no es un v�lido.Porfavor ingrese un numero valido." << std::endl;
-    }
-    catch (const std::out_of_range& e) {
-        std::cerr << "Error: El n�mero ingresado est� fuera del rango de un int." << std::endl;
-    }
-
-
-}
-
-bool stringToBool(string str){
+static bool stringToBool(string str){
     return (str == "true" || str == "1");
 }
 
@@ -178,8 +124,11 @@ void Sistema::actualizarArchivos()
 
 }
 
+
+
 void Sistema::MenuPrincipal() {
 
+    lecturaArchivos();
     Estanteria estanteria;
     int opcionMenu = 0;
     while (opcionMenu != 5){
@@ -197,9 +146,9 @@ void Sistema::MenuPrincipal() {
                 estanteria.venderZapato();
                 break;
             case 2:
-                //Poner el metodo de rellenar estante
+                estanteria.ModeloTallaRelleno(eB);
             case 3:
-                //Poner el metodo de ver el estante
+                estanteria.imprimirEstante(e);
             case 4:
                 cout << "Entrando a las estadisticas" << endl;
                 MenuEstadisticas();

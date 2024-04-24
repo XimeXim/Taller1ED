@@ -1,12 +1,12 @@
 // Test.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
 //
-
+#include "sistema.h"
 #include <iostream>
 
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Sistema sistema;
 }
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar

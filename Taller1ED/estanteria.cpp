@@ -1,4 +1,4 @@
-
+﻿
 #include "estanteria.h"
 #include <iostream>
 #include <fstream>
@@ -209,7 +209,7 @@ std::vector <int> Estanteria::tallaMasVendida(std::vector <int> tallasVendidas) 
     }
 }
 
-int porcentajeColorBlancoVendido(int cantZapatosBlancosVendidos, int cantZapatosVendidos) {
+int Estanteria::porcentajeColorBlancoVendido(int cantZapatosBlancosVendidos, int cantZapatosVendidos) {
 
     int parteBlanca = cantZapatosBlancosVendidos;
     int totalZapatosVendidos = cantZapatosVendidos;
@@ -219,7 +219,7 @@ int porcentajeColorBlancoVendido(int cantZapatosBlancosVendidos, int cantZapatos
 
 }
 
-int porcentajeColorNegroVendido(int cantZapatosNegrosVendidos, int cantZapatosVendidos) {
+int Estanteria::porcentajeColorNegroVendido(int cantZapatosNegrosVendidos, int cantZapatosVendidos) {
 
     int parteNegra = cantZapatosNegrosVendidos;
     int totalZapatosVendidos = cantZapatosVendidos;
@@ -283,3 +283,78 @@ void Estanteria::agregarArchivo(NodoZapato* nodo)
     }
 
 }
+
+void Estanteria::imprimirEstante(Estanteria* e) {
+
+    for (int i = 0; i < e->getAlto(); ++i) {
+        NodoZapato* AUX = e->Talla[i]->getNodoDeIzquierda();
+        while (AUX != e->Talla[i]) {
+            if (AUX != 0) {
+                cout << AUX << "  ";
+            }
+            else {
+                cout << "   "; //esta vacia
+            }
+        }
+        cout << endl;
+    }
+}
+
+void Estanteria::ModeloTallaRelleno(Estanteria* e) const {
+
+    string modeloBuscado = "";
+    string tallaBuscada = "";
+    
+    cout << "Ingrese la talla del zapato:" << endl;
+    cin >> tallaBuscada;
+
+
+    Zapato* zap;
+
+    try {
+        cout << "Ingrese el modelo del zapato que desea poner en stock desde bodega:" << endl;
+        cin >> modeloBuscado;
+        int modelo = std::stoi(modeloBuscado);
+        std::cout << "El modelo ingresado es: " << modelo << std::endl;
+        std::cout << "Buscando modelo..." << std::endl;
+        std::string inputTalla;
+        if (e->buscarModeloZapato(modelo) == true) {
+            std::cout << "Se encontraron zapatos de este modelo!" << std::endl;
+            try {
+                cout << "Ingrese la talla del zapato que desea poner en stock desde bodega:" << endl;
+                cin >> tallaBuscada;
+                int talla = std::stoi(tallaBuscada);
+                std::cout << "La talla ingresada es: " << talla << std::endl;
+                std::cout << "Buscando talla..." << std::endl;
+                if (e->buscarTallaZapato(talla) == true) {
+                    for (int i = 0; i < alto; ++i) {
+                        NodoZapato* nodoZapatoAObtener = e->Modelo[i]->getNodoDeIzquierda();
+                        zap = nodoZapatoAObtener->getZapato();
+                        while (nodoZapatoAObtener != e->Modelo[i]) {
+                            if (nodoZapatoAObtener->getX() == modelo && nodoZapatoAObtener->getY() == talla) {
+                                string modeloZapatoRelleno = nodoZapatoAObtener->getZapato()->getModelo();
+                                NodoZapato* nodo = new NodoZapato(zap, modelo, talla);
+                                e->agregarAEstante(nodo);
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (const std::invalid_argument& e) {
+                std::cerr << "Error: Lo ingresado no es v�lido.Porfavor ingrese un numero valido." << std::endl;
+            }
+            catch (const std::out_of_range& e) {
+                std::cerr << "Error: Lo ingresado no es v�lido." << std::endl;
+            }
+        }
+    }
+    catch (const std::invalid_argument& e) {
+        std::cerr << "Error: Lo ingresado no es v�lido..Porfavor ingrese un numero valido." << std::endl;
+    }
+    catch (const std::out_of_range& e) {
+        std::cerr << "Error: Lo ingresado no es v�lido." << std::endl;
+    }
+
+}
+
