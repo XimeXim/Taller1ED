@@ -1,6 +1,16 @@
 #include "sistema.h"
 #include "NodoZapato.h"
+#include "estanteria.h"
 using namespace std;
+
+int main(){
+
+
+
+}
+
+
+
 
 Sistema::Sistema()
 {
@@ -39,18 +49,18 @@ bool Sistema::rellenarEstante(class NodoZapato* mppBodega) {
                 
             }
             catch (const std::invalid_argument& e) {
-                std::cerr << "Error: El modelo que ingreso no es un v�lido.Porfavor ingrese un numero valido." << std::endl;
+                std::cerr << "Error: El modelo que ingreso no es un v�lido.Porfavor ingrese un numero valido." << std::endl;
             }
             catch (const std::out_of_range& e) {
-                std::cerr << "Error: El n�mero ingresado est� fuera del rango de un int." << std::endl;
+                std::cerr << "Error: El n�mero ingresado est� fuera del rango de un int." << std::endl;
             }
         }*/
     }
     catch (const std::invalid_argument& e) {
-        std::cerr << "Error: El modelo que ingreso no es un v�lido.Porfavor ingrese un numero valido." << std::endl;
+        std::cerr << "Error: El modelo que ingreso no es un v�lido.Porfavor ingrese un numero valido." << std::endl;
     }
     catch (const std::out_of_range& e) {
-        std::cerr << "Error: El n�mero ingresado est� fuera del rango de un int." << std::endl;
+        std::cerr << "Error: El n�mero ingresado est� fuera del rango de un int." << std::endl;
     }
 
 
@@ -168,3 +178,79 @@ void Sistema::actualizarArchivos()
 
 }
 
+void Sistema::MenuPrincipal() {
+
+    Estanteria estanteria;
+    int opcionMenu = 0;
+    while (opcionMenu != 5){
+
+        cout << "Menú Principal" << endl;
+        cout << "Ingrese su opción:" << endl;
+        cout << "1) Vender zapato" << endl;
+        cout << "2) Rellenar estante" << endl;
+        cout << "3) Ver estante" << endl;
+        cout << "4) Ver estadísticas" << endl;
+        cout << "5) Cerrar Programa" << endl;
+        cin >> opcionMenu;
+        switch (opcionMenu){
+            case 1:
+                estanteria.venderZapato();
+                break;
+            case 2:
+                //Poner el metodo de rellenar estante
+            case 3:
+                //Poner el metodo de ver el estante
+            case 4:
+                cout << "Entrando a las estadisticas" << endl;
+                MenuEstadisticas();
+            case 5:
+                actualizarArchivos();
+                cout << "Saliendo del sistema, muchas gracias." << endl;
+        }
+    }
+}
+
+void Sistema::MenuEstadisticas() {
+
+    Estanteria estanteria;
+    std::vector <std::string> modelos = estanteria.getModelosVendidos();
+    std::vector <int> tallas = estanteria.getTallasVendidas();
+    int zapatosNegros = estanteria.getCantZapatosNegrosVendidos();
+    int zapatosBlancos = estanteria.getCantZapatosBlancosVendidos();
+    int zapatos = estanteria.getCantZapatosVendidos();
+    int ventasTotales = estanteria.getVentasTotales();
+    int opcionEstadisticas = 0;
+    while (opcionEstadisticas != 5){
+
+        cout << "Menú Estadísticas" << endl;
+        cout << "Ingrese su opción:" << endl;
+        cout << "1) Modelo más vendido" << endl;
+        cout << "2) Talla de zapatos más vendida" << endl;
+        cout << "3) Porcentaje de ventas según color" << endl;
+        cout << "4) Imprimir Ventas totales" << endl;
+        cout << "5) Menú anterior" << endl;
+        cin >> opcionEstadisticas;
+        switch (opcionEstadisticas){
+            case 1:
+                estanteria.modeloMasVendido(modelos);
+                break;
+            case 2:
+                estanteria.tallaMasVendida(tallas);
+                break;
+            case 3:
+                estanteria.porcentajeColorBlancoVendido(zapatosBlancos, zapatos);
+                estanteria.porcentajeColorNegroVendido(zapatosNegros, zapatos);
+                break;
+            case 4:
+                cout << "Las ventas totales son: " << ventasTotales << endl;
+                break;
+            case 5:
+                cout << "Saliendo al menú principal" << endl;
+                return;
+            default:
+                cout << "Opnción invalida, volviendo al menu principal" << endl;
+        }
+    }
+
+
+}

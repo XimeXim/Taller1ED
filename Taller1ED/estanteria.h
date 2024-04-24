@@ -78,7 +78,7 @@ public:
 
     bool buscarTallaZapato(int tallaBuscada);
 
-    bool venderZapato(int modeloBuscado, int tallaBuscada);
+    void venderZapato();
 
     std::vector <std::string> modeloMasVendido(std::vector <std::string> modelosVendidos);
 

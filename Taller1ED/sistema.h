@@ -16,11 +16,14 @@ class Sistema
 private:
 	Estanteria* e;
 	Estanteria* eB;
+
 public:
 	Sistema();
 	void lecturaArchivos();
 	bool stringToBool(string str);
 	bool rellenarEstante(class NodoZapato* mppBodega);
 	void actualizarArchivos();
+    void MenuPrincipal();
+    void MenuEstadisticas();
 	~Sistema();
 };

@@ -1,11 +1,11 @@
 
-#include "Estanteria.h"
+#include "estanteria.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
-
 #include "NodoZapato.h"
 #include "zapato.h"
+using namespace std;
 
 Estanteria::Estanteria() {
 }
@@ -112,6 +112,7 @@ bool Estanteria::buscarModeloZapato(int modeloBuscado) {
             AUX = AUX->getNodoDeIzquierda();
         }
     }
+    cout << "El modelo ingresado no se encuentra" << endl;
     return false;
 }
 
@@ -125,11 +126,19 @@ bool Estanteria::buscarTallaZapato(int tallaBuscada) {
             AUX = AUX->getNodoDeArriba();
         }
     }
+    cout << "La talla ingresada no se encuentra" << endl;
     return false;
 }
 
 
-bool Estanteria::venderZapato(int modeloBuscado, int tallaBuscada) {
+void Estanteria::venderZapato() {
+
+    int modeloBuscado = 0;
+    int tallaBuscada = 0;
+    cout <<"Ingrese el modelo del zapato que desea:" << endl;
+    cin >> modeloBuscado;
+    cout <<"Ingrese la talla del zapato que desea:" << endl;
+    cin >> tallaBuscada;
 
     if (buscarModeloZapato(modeloBuscado) && buscarTallaZapato(tallaBuscada)){
         for (int i = 0; i < alto; ++i) {
@@ -154,11 +163,9 @@ bool Estanteria::venderZapato(int modeloBuscado, int tallaBuscada) {
                         cantZapatosVendidos = cantZapatosVendidos + 1;
                         ventasTotales = ventasTotales + nodoZapatoAObtener->getZapato()->getPrecio();
                     }
-                    return true;
                 }
             }
         }
-        return false;
     }
 }
 
@@ -176,7 +183,10 @@ std::vector <std::string> Estanteria::modeloMasVendido(std::vector <std::string>
             frecuenciaModelo[modelosVendidos[i]] = 0;
         }
     }
-    return modelosMasRepetidos;
+    std::cout << "Los modelos mas vendidos son: " << std::endl;
+    for (int i = 0; i < modelosMasRepetidos.size(); ++i) {
+        std::cout << modelosMasRepetidos[i] << std::endl;
+    }
 }
 
 std::vector <int> Estanteria::tallaMasVendida(std::vector <int> tallasVendidas) {
@@ -193,7 +203,10 @@ std::vector <int> Estanteria::tallaMasVendida(std::vector <int> tallasVendidas) 
             frecuenciaTalla[tallasVendidas[i]] = 0;
         }
     }
-    return tallasMasRepetidas;
+    std::cout << "Las tallas mas vendidas son: " << std::endl;
+    for (int i = 0; i < tallasMasRepetidas.size(); ++i) {
+        std::cout << tallasMasRepetidas[i] << std::endl;
+    }
 }
 
 int porcentajeColorBlancoVendido(int cantZapatosBlancosVendidos, int cantZapatosVendidos) {
@@ -201,7 +214,9 @@ int porcentajeColorBlancoVendido(int cantZapatosBlancosVendidos, int cantZapatos
     int parteBlanca = cantZapatosBlancosVendidos;
     int totalZapatosVendidos = cantZapatosVendidos;
     int porcentajeZapatosBlancosVendidos = (parteBlanca * 100) / cantZapatosVendidos;
-    return porcentajeZapatosBlancosVendidos;
+    cout <<"El porcentaje de pares de zapatos blancos es: "<< porcentajeZapatosBlancosVendidos << endl;
+    return 0;
+
 }
 
 int porcentajeColorNegroVendido(int cantZapatosNegrosVendidos, int cantZapatosVendidos) {
@@ -209,7 +224,8 @@ int porcentajeColorNegroVendido(int cantZapatosNegrosVendidos, int cantZapatosVe
     int parteNegra = cantZapatosNegrosVendidos;
     int totalZapatosVendidos = cantZapatosVendidos;
     int porcentajeZapatosNegrosVendidos = (parteNegra * 100) / cantZapatosVendidos;
-    return porcentajeZapatosNegrosVendidos;
+    cout <<"El porcentaje de pares de zapatos negros es: "<< porcentajeZapatosNegrosVendidos << endl;
+    return 0;
 }
 
 void Estanteria::agregarAEstante(NodoZapato* nodo) {
