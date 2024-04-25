@@ -26,7 +26,9 @@ private:
 
 public:
 
-    explicit Estanteria();
+    Estanteria();
+
+    Estanteria(int largo, int alto);
 
     virtual ~Estanteria();
 

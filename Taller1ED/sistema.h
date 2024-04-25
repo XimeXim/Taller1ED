@@ -16,6 +16,7 @@ class Sistema
 private:
 	Estanteria* e;
 	Estanteria* eB;
+    Estanteria estanteria;
 
 public:
 	Sistema();

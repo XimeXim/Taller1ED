@@ -103,7 +103,7 @@ void Estanteria::setCantZapatosVendidos(int cantZapatosVendidos) {
 }
 
 bool Estanteria::buscarModeloZapato(int modeloBuscado) {
-    for (int i = 0; i < alto; ++i) {
+    for (int i = 0; i < getAlto(); ++i) {
         NodoZapato* AUX = Talla[i]->getNodoDeIzquierda();
         while (AUX != Talla[i]) {
             if (AUX->getX() == modeloBuscado) {
@@ -117,7 +117,7 @@ bool Estanteria::buscarModeloZapato(int modeloBuscado) {
 }
 
 bool Estanteria::buscarTallaZapato(int tallaBuscada) {
-    for (int i = 0; i < largo; ++i) {
+    for (int i = 0; i < getLargo(); ++i) {
         NodoZapato* AUX = Modelo[i]->getNodoDeArriba();
         while (AUX != Modelo[i]) {
             if (AUX->getX() == tallaBuscada) {
@@ -228,6 +228,38 @@ int Estanteria::porcentajeColorNegroVendido(int cantZapatosNegrosVendidos, int c
     return 0;
 }
 
+void Estanteria::agregarArchivo(NodoZapato* nodo)
+{
+    if (nodo != NULL) {
+        std::ofstream arch;
+        arch.open("stock_test.csv", std::ios::app);
+
+        for (int i = 0; i < largo; i++) {
+            NodoZapato* aux = Modelo[i]->getNodoDeArriba();
+            while (aux != Modelo[i]) {
+                std::string data = nodo->getZapato()->getModelo();
+                data += ",";
+                data += nodo->getZapato()->getTalla();
+                data += ",";
+                data += std::to_string(nodo->getZapato()->getPrecio());
+                data += ",";
+                data += std::to_string(nodo->getZapato()->getCantidadPares());
+                data += ",";
+                data += nodo->getZapato()->getColor();
+                data += ",";
+                data += std::to_string(nodo->getZapato()->isCordones());
+
+                arch << data << std::endl;
+                if (nodo->getNodoDeArriba() != NULL) { // Verifica que el nodo de arriba no sea NULL
+                    agregarArchivo(nodo->getNodoDeArriba());
+                } else {
+                    return; // Detiene la recursión
+                }
+            }
+        }
+    }
+}
+
 void Estanteria::agregarAEstante(NodoZapato* nodo) {
     int y = nodo->getY();
     int x = nodo->getX();
@@ -252,6 +284,7 @@ void Estanteria::agregarAEstante(NodoZapato* nodo) {
     return;
 }
 
+/*
 void Estanteria::agregarArchivo(NodoZapato* nodo)
 {
 
@@ -283,7 +316,7 @@ void Estanteria::agregarArchivo(NodoZapato* nodo)
     }
 
 }
-
+*/
 void Estanteria::imprimirEstante(Estanteria* e) {
 
     for (int i = 0; i < e->getAlto(); ++i) {
@@ -370,3 +403,5 @@ void Estanteria::ModeloTallaRelleno(Estanteria* e, Estanteria* e2) {
     }
 
 }
+
+Estanteria::Estanteria(int largo, int alto) : largo(largo), alto(alto) {}

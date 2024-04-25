@@ -3,11 +3,14 @@
 #include "sistema.h"
 #include <iostream>
 
+int main (){
 
-int main()
-{
+
     Sistema sistema;
+    
+
 }
+
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
 // Depurar programa: F5 o menú Depurar > Iniciar depuración

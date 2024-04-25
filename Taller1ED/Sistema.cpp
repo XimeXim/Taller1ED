@@ -19,16 +19,20 @@ bool Sistema::stringToBool(string str){
 
 void Sistema::lecturaArchivos() {
 
-    fstream archivoStock("stock.csv");
+    ifstream archivoStock("stock.csv");
     printf("Cargando...\n");
     string input = "";
     
-    e = new Estanteria();
-    Zapato* zap;
-    NodoZapato* nodo;
+    e = new Estanteria(1000, 1000);
+    //Zapato* zap;
+    //NodoZapato* nodo;
+
+    cout <<"arriba del wuail" << endl;
 
     while (getline(archivoStock, input)) 
     {
+        cout <<"bajo del wuail" << endl;
+
         int modelo = 0;
         string modeloAux = "";
         int talla = 0;
@@ -57,21 +61,23 @@ void Sistema::lecturaArchivos() {
         cantidadPares = stoi(cantParesAux);
         cordones = stringToBool(cordonesAux);
 
-        zap = new Zapato(modeloAux,talla,precio,cantidadPares,color,genero,cordones);
-        nodo = new NodoZapato(zap, modelo, talla);
+        Zapato* zap = new Zapato(modeloAux,talla,precio,cantidadPares,color,genero,cordones);
+        NodoZapato* nodo = new NodoZapato(zap, modelo, talla);
         e->agregarAEstante(nodo);
         
 
     }
+    archivoStock.close();
 
     fstream archivoBodega("bodega.csv");
     string inputB = "";
-    NodoZapato* nodoB;
-    eB = new Estanteria();
-    Zapato* zapBodega;
+    //NodoZapato* nodoB;
+    eB = new Estanteria(1000, 1000);
+
 
     while (getline(archivoBodega, inputB))
     {
+        //Zapato* zapBodega;
         int modeloB = 0;
         string modeloAuxB = "";
         int tallaB = 0;
@@ -100,11 +106,12 @@ void Sistema::lecturaArchivos() {
         cantidadParesB = stoi(cantParesAuxB);
         cordonesB = stringToBool(cordonesAuxB);
 
-        zapBodega = new Zapato(modeloAuxB, tallaB, precioB, cantidadParesB, colorB, generoB, cordonesB);
-        nodoB = new NodoZapato(zapBodega, modeloB, tallaB);
+
+        Zapato* zapBodega = new Zapato(modeloAuxB, tallaB, precioB, cantidadParesB, colorB, generoB, cordonesB);
+        NodoZapato* nodoB = new NodoZapato(zapBodega, modeloB, tallaB);
         eB->agregarAEstante(nodoB);
-        
     }
+    archivoBodega.close();
 
 
 }
@@ -130,7 +137,7 @@ void Sistema::actualizarArchivos()
 void Sistema::MenuPrincipal() {
 
     lecturaArchivos();
-    Estanteria estanteria;
+    Estanteria estanteria(1000, 1000);
     int opcionMenu = 0;
     while (opcionMenu != 5){
 
@@ -162,7 +169,7 @@ void Sistema::MenuPrincipal() {
 
 void Sistema::MenuEstadisticas() {
 
-    Estanteria estanteria;
+
     std::vector <std::string> modelos = estanteria.getModelosVendidos();
     std::vector <int> tallas = estanteria.getTallasVendidas();
     int zapatosNegros = estanteria.getCantZapatosNegrosVendidos();
