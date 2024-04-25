@@ -151,11 +151,23 @@ public:
      */
     void agregarAEstante(NodoZapato* nodo);
 
-
+    /**
+     * Metodo recursivo que llena el archivo original leido en el metodo lecturaArchivo con los datos actuales de la mpp a lineas
+     * @param nodo Nodo del cual los datos serán obtenidos para el nuevo archivo
+     */
     void agregarArchivo(NodoZapato* nodo);
 
+    /**
+     * Metodo que segun el modelo y talla busca y mueve los zapatos disponibles en bodega hacia el estante
+     * @param e Bodega de los zapatos
+     * @param e2 Estanteria de los zapatos
+     */
     void ModeloTallaRelleno(Estanteria* e, Estanteria* e2);
 
+    /**
+     * Metodo que imprime los zapatos dentro del estante
+     * @param e Estanteria como tal
+     */
     void imprimirEstante(Estanteria* e);
 
 

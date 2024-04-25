@@ -17,20 +17,20 @@ private:
 public:
 
     /**
-     *
-     * @param zapato
-     * @param x
-     * @param y
-     * @param nodoDeArriba
-     * @param nodoDeIzquierda
+     * Constructor del nodo zapato completo
+     * @param zapato Zapato al que hace referencia
+     * @param x Posicion horizontal
+     * @param y Posicion vertical
+     * @param nodoDeArriba Referencia al nodo de arriba
+     * @param nodoDeIzquierda Referencia al nodo de la izquierda
      */
     NodoZapato(class Zapato* zapato, int x, int y, NodoZapato* nodoDeArriba, NodoZapato* nodoDeIzquierda);
 
     /**
-     *
-     * @param zapato
-     * @param x
-     * @param y
+     * Constructor del nodo zapato solo con los parametros de zapato y sus coordenadas
+     * @param zapato Zapato al que hace referencia
+     * @param x Posicion horizontal
+     * @param y Posicion vertical
      */
     NodoZapato(class Zapato* zapato, int x, int y);
 
