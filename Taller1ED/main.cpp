@@ -4,11 +4,7 @@
 #include <iostream>
 
 int main (){
-
-
     Sistema sistema;
-    
-
 }
 
 

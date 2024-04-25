@@ -15,14 +15,33 @@ private:
     NodoZapato* nodoDeIzquierda;
 
 public:
-    //Constructor, destrcutor, gets y sets del nodozapato.
-    //REVISAR SI ES QUE EL CONSTRUCTOR DEBE ESTAR VACIO O NO
+
+    /**
+     *
+     * @param zapato
+     * @param x
+     * @param y
+     * @param nodoDeArriba
+     * @param nodoDeIzquierda
+     */
     NodoZapato(class Zapato* zapato, int x, int y, NodoZapato* nodoDeArriba, NodoZapato* nodoDeIzquierda);
 
+    /**
+     *
+     * @param zapato
+     * @param x
+     * @param y
+     */
     NodoZapato(class Zapato* zapato, int x, int y);
 
+    /**
+     * Destructor del nodo zapato
+     */
     virtual ~NodoZapato();
 
+    /**
+     * Get's & Set's
+     */
     class Zapato* getZapato() const;
 
     int getX() const;

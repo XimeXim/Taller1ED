@@ -16,11 +16,23 @@ private:
     bool cordones;
 
 public:
-    //REVISAR SI ES QUE SE DEBE PONER EL DESTRUCTOR O NO
-    // porfavor ponga constructor XD
+
+    /**
+     * Constructor del zapato
+     * @param modelo Modelo del zapato
+     * @param talla Talla del zapato
+     * @param precio Precio del zapato
+     * @param cantidadPares Cantidad de pares vendidos que registra ese zapato
+     * @param color El color del zapato
+     * @param genero Genero para el que es el zapato
+     * @param cordones Si el zapato presenta o no cordones
+     */
     Zapato(const std::string& modelo, int talla, int precio, int cantidadPares, const std::string& color,
         const std::string& genero, bool cordones);
 
+    /**
+     * Get's & set'S
+     */
     const std::string& getModelo() const;
 
     void setModelo(const std::string& modelo);
